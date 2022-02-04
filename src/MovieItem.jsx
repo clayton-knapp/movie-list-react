@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function MovieItem({ title, year, director, color, handleDeleteMovie }) {
+export default function MovieItem({ id, title, year, director, color, handleDeleteMovie }) {
   return <div className='movie-item'
     style={{ backgroundColor: color }}
-    onClick={() => handleDeleteMovie(title)}
+    //on Click run handleDeleteMovie passing in this movie's title
+    onClick={() => handleDeleteMovie(id)}
   >
     <h2>{title}</h2>
     <h3>Released: {year}</h3>

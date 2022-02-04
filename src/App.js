@@ -8,11 +8,12 @@ function App() {
   // tracks state for allMovies, filteredMovies, movieFormYear, movieFormDirector, movieTitle, movieFormColor
   const [allMovies, setAllMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [movieFormTitle, setMovieFormTitle] = useState('');
   const [movieFormYear, setMovieFormYear] = useState('');
   const [movieFormDirector, setMovieFormDirector] = useState('');
-  const [movieFormTitle, setMovieFormTitle] = useState('');
   const [movieFormColor, setMovieFormColor] = useState('lightgreen');
   const [query, setQuery] = useState('');
+  const [id, setId] = useState(0);
 
   //FUNCTIONS
   function handleSubmit(e) {
@@ -20,6 +21,7 @@ function App() {
 
     //create a movie object with current state
     const newMovie = {
+      id: id,
       title: movieFormTitle,
       year: movieFormYear,
       director: movieFormDirector,
@@ -27,29 +29,40 @@ function App() {
     };
 
     //add immutably to all goblins array
-    setAllMovies([...allMovies, newMovie]);    
+    setAllMovies([...allMovies, newMovie]);   
+    
+    //reset the state to reset form inputs
+    setMovieFormTitle('');
+    setMovieFormYear('');
+    setMovieFormDirector('');
+    setMovieFormColor('lightgreen');
+
+    //increment id for next time move is added
+    setId(id + 1);
   }
 
-  function handleDeleteMovie(title) {
+  function handleDeleteMovie(id) {
     // find the index of the movie in allMovies with this title
-    const index = allMovies.findIndex(movie => movie.title === title);
+    const index = allMovies.findIndex(movie => movie.id === id);
 
-    //use splice to delete the movie at this index
+    //use splice to delete the movie at this index - mutates the array but ok because we update state on next line
     allMovies.splice(index, 1);
 
     //update the allGoblins array immutably
     setAllMovies([...allMovies]);
   }
 
-  useEffect(() => {
-    //filter the movies
-    const filteredMovies = allMovies.filter((movie) => 
+  function handleFilterMovie() {
+    //filter the movies, only add ones to array with title that includes
+    const tempFilteredMovies = allMovies.filter((movie) => 
       movie.title.includes(query)
     );
+    
+    //
+    setFilteredMovies(tempFilteredMovies);
+  }
 
-    setFilteredMovies(filteredMovies);
-  
-  }, [query, allMovies]);
+  useEffect(handleFilterMovie, [query, allMovies]);
   
 
   return (
@@ -73,17 +86,17 @@ function App() {
           color={movieFormColor}
         />
       </div>
-      <div className='bottom'>
-        <div className='filter'>
+      <div className='filter'>
           Filter:
-          <input
-            onChange={(e)=> setQuery(e.target.value)}
-          ></input>
-        </div>
+        <input
+          onChange={(e)=> setQuery(e.target.value)}
+        ></input>
+      </div>
+      <div className='bottom'>
         <MovieList
           movies={
             // if there are movies in the filteredMovies array pass those, if not pass allMovies
-            filteredMovies.length
+            filteredMovies
               ? filteredMovies
               : allMovies
           }

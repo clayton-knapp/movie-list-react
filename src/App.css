@@ -76,10 +76,28 @@ html, body, #root, .App {
   width: 600px;
   display: flex;
   flex-direction: row;
+  margin: auto;
   justify-content: center;
   align-items: center;
 }
 
 .filter {
   margin: 20px;
+}
+
+/* .bottom {
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+
+} */
+
+.movie-list {
+  width: 900px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+  margin: auto;
+  flex-wrap: wrap;
 }

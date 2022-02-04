@@ -1,6 +1,8 @@
 import './App.css';
 import { useState } from 'react';
 import Form from './Form';
+import MovieItem from './MovieItem';
+import MovieList from './MovieList';
 
 function App() {
   // tracks state for allMovies, filteredMovies, movieFormYear, movieFormDirector, movieTitle, movieFormColor
@@ -11,20 +13,50 @@ function App() {
   const [movieFormTitle, setMovieFormTitle] = useState('');
   const [movieFormColor, setMovieFormColor] = useState('');
 
+  //FUNCTIONS
+  function handleSubmit(e) {
+    e.preventDefault();
 
+    //create a movie object with current state
+    const newMovie = {
+      title: movieFormTitle,
+      year: movieFormYear,
+      director: movieFormDirector,
+      color: movieFormColor
+    };
+
+    //add immutable to all goblins array
+    setAllMovies([...allMovies, newMovie]);    
+  }
 
   return (
     <div className="App">
-      <Form
-        movieFormTitle={movieFormTitle}
-        setMovieFormTitle={setMovieFormTitle}
-        movieFormYear={movieFormYear}
-        setMovieFormYear={setMovieFormYear}
-        movieFormDirector={movieFormDirector}
-        setMovieFormDirector={setMovieFormDirector}
-        movieFormColor={movieFormColor}
-        setMovieFormColor={setMovieFormColor}
-      />
+      <div className='top'>
+        <Form
+          movieFormTitle={movieFormTitle}
+          setMovieFormTitle={setMovieFormTitle}
+          movieFormYear={movieFormYear}
+          setMovieFormYear={setMovieFormYear}
+          movieFormDirector={movieFormDirector}
+          setMovieFormDirector={setMovieFormDirector}
+          movieFormColor={movieFormColor}
+          setMovieFormColor={setMovieFormColor}
+          handleSubmit={handleSubmit}
+        />
+        <MovieItem
+          movieFormTitle={movieFormTitle}
+          movieFormYear={movieFormYear}
+          movieFormDirector={movieFormDirector}
+          movieFormColor={movieFormColor}
+        />
+      </div>
+      <div className='bottom'>
+        <MovieList
+          
+        />
+
+      </div>
+
 
     </div>
   );

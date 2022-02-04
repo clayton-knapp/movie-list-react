@@ -64,3 +64,18 @@ html, body, #root, .App {
   margin: 20px;
   width: 100px;
 }
+
+.movie-item {
+  border: 1px dotted black;
+  border-radius: 10px;
+  width: 300px;
+  margin: 20px;
+}
+
+.top {
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

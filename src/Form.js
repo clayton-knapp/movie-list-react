@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function Form({ movieFormTitle, setMovieFormTitle, movieFormYear, setMovieFormYear, movieFormDirector, setMovieFormDirector, movieFormColor, setMovieFormColor }) {
-  return <div className='form'>
+export default function Form({ movieFormTitle, setMovieFormTitle, movieFormYear, setMovieFormYear, movieFormDirector, setMovieFormDirector, movieFormColor, setMovieFormColor, handleSubmit }) {
+  return <form className='form'
+    onSubmit={handleSubmit}
+  >
     <h2>Enter a Movie!</h2>
     <label>
       Title: 
@@ -48,5 +50,5 @@ export default function Form({ movieFormTitle, setMovieFormTitle, movieFormYear,
       </select>
     </label>
     <button>Submit</button>
-  </div>;
+  </form>;
 }

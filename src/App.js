@@ -30,6 +30,17 @@ function App() {
     setAllMovies([...allMovies, newMovie]);    
   }
 
+  function handleDeleteMovie(title) {
+    // find the index of the movie in allMovies with this title
+    const index = allMovies.findIndex(movie => movie.title === title);
+
+    //use splice to delete the movie at this index
+    allMovies.splice(index, 1);
+
+    //update the allGoblins array immutably
+    setAllMovies([...allMovies]);
+  }
+
   useEffect(() => {
     //filter the movies
     const filteredMovies = allMovies.filter((movie) => 
@@ -38,7 +49,7 @@ function App() {
 
     setFilteredMovies(filteredMovies);
   
-  }, [query]);
+  }, [query, allMovies]);
   
 
   return (
@@ -76,6 +87,7 @@ function App() {
               ? filteredMovies
               : allMovies
           }
+          handleDeleteMovie={handleDeleteMovie}
         />
 
       </div>

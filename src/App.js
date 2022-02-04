@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Form from './Form';
 
 function App() {
+  // tracks state for allMovies, filteredMovies, movieFormYear, movieFormDirector, movieTitle, movieFormColor
+  const [allMovies, setAllMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [movieFormYear, setMovieFormYear] = useState('');
+  const [movieFormDirector, setMovieFormDirector] = useState('');
+  const [movieFormTitle, setMovieFormTitle] = useState('');
+  const [movieFormColor, setMovieFormColor] = useState('');
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form
+        movieFormTitle={movieFormTitle}
+        setMovieFormTitle={setMovieFormTitle}
+        movieFormYear={movieFormYear}
+        setMovieFormYear={setMovieFormYear}
+        movieFormDirector={movieFormDirector}
+        setMovieFormDirector={setMovieFormDirector}
+        movieFormColor={movieFormColor}
+        setMovieFormColor={setMovieFormColor}
+      />
+
     </div>
   );
 }

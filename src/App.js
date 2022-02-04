@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Form from './Form';
 import MovieItem from './MovieItem';
 import MovieList from './MovieList';
@@ -11,7 +11,8 @@ function App() {
   const [movieFormYear, setMovieFormYear] = useState('');
   const [movieFormDirector, setMovieFormDirector] = useState('');
   const [movieFormTitle, setMovieFormTitle] = useState('');
-  const [movieFormColor, setMovieFormColor] = useState('');
+  const [movieFormColor, setMovieFormColor] = useState('lightgreen');
+  const [query, setQuery] = useState('');
 
   //FUNCTIONS
   function handleSubmit(e) {
@@ -25,9 +26,20 @@ function App() {
       color: movieFormColor
     };
 
-    //add immutable to all goblins array
+    //add immutably to all goblins array
     setAllMovies([...allMovies, newMovie]);    
   }
+
+  useEffect(() => {
+    //filter the movies
+    const filteredMovies = allMovies.filter((movie) => 
+      movie.title.includes(query)
+    );
+
+    setFilteredMovies(filteredMovies);
+  
+  }, [query]);
+  
 
   return (
     <div className="App">
@@ -51,6 +63,12 @@ function App() {
         />
       </div>
       <div className='bottom'>
+        <div className='filter'>
+          Filter:
+          <input
+            onChange={(e)=> setQuery(e.target.value)}
+          ></input>
+        </div>
         <MovieList
           movies={
             // if there are movies in the filteredMovies array pass those, if not pass allMovies

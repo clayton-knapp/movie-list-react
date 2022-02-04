@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 html, body, #root, .App {
@@ -68,7 +71,8 @@ html, body, #root, .App {
 .movie-item {
   border: 1px dotted black;
   border-radius: 10px;
-  width: 300px;
+  width: 250px;
+  height: 150px;
   margin: 20px;
 }
 
@@ -76,7 +80,7 @@ html, body, #root, .App {
   width: 600px;
   display: flex;
   flex-direction: row;
-  margin: auto;
+  /* margin: auto; */
   justify-content: center;
   align-items: center;
 }
@@ -100,4 +104,11 @@ html, body, #root, .App {
   align-items: center; */
   margin: auto;
   flex-wrap: wrap;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function MovieItem({ movieFormTitle, movieFormYear, movieFormDirector, movieFormColor }) {
+export default function MovieItem({ title, year, director, color }) {
   return <div className='movie-item'
-    style={{ backgroundColor: movieFormColor }}
+    style={{ backgroundColor: color }}
   >
-    <h2>{movieFormTitle}</h2>
-    <h3>Released: {movieFormYear}</h3>
-    <h3>Director: {movieFormDirector}</h3>
+    <h2>{title}</h2>
+    <h3>Released: {year}</h3>
+    <h3>Director: {director}</h3>
   </div>;
 }

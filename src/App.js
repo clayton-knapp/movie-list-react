@@ -44,15 +44,20 @@ function App() {
           handleSubmit={handleSubmit}
         />
         <MovieItem
-          movieFormTitle={movieFormTitle}
-          movieFormYear={movieFormYear}
-          movieFormDirector={movieFormDirector}
-          movieFormColor={movieFormColor}
+          title={movieFormTitle}
+          year={movieFormYear}
+          director={movieFormDirector}
+          color={movieFormColor}
         />
       </div>
       <div className='bottom'>
         <MovieList
-          
+          movies={
+            // if there are movies in the filteredMovies array pass those, if not pass allMovies
+            filteredMovies.length
+              ? filteredMovies
+              : allMovies
+          }
         />
 
       </div>
